@@ -1,0 +1,20 @@
+name: Copy Code on Tag Push
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  copy-code:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Create destination directory
+        run: mkdir -p /var/www/html/vue_chat
+
+      - name: Copy code to destination
+        run: cp -r ${{ github.workspace }}/* /var/www/html/vue_chat
