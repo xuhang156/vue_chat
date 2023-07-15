@@ -28,7 +28,7 @@
 
 <script>
     export default {
-        name: "BBSHeader",
+        name: "navbar",
         data() {
             return {
                 height:this.$navBarHeight
