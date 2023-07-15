@@ -8,6 +8,7 @@ import {Row,Button} from 'element-ui';
 
 //关闭生产提示
 Vue.config.productionTip = false
+Vue.prototype.$navBarHeight = 60;
 
 Vue.use(VueRouter)
 Vue.component(Row.name,Row);

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="header sticky-element">
+        <div class="header sticky-element" :style="navBarStyle">
             <div class="box">
                 <h1>
                     <img src="../assets/logo.png">
@@ -28,7 +28,19 @@
 
 <script>
     export default {
-        name: "BBSHeader"
+        name: "BBSHeader",
+        data() {
+            return {
+                height:this.$navBarHeight
+            }
+        },
+        computed:{
+            navBarStyle(){
+                return {
+                    height:`${this.height}px`
+                }
+            }
+        }
     }
 </script>
 
@@ -41,7 +53,6 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        height: 50px;
         background-color:#292c2f;
         color: #ffffff;
     }
