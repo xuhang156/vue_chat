@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="all-space">
       <div class="sticky-container">
         <div class="header" :style="navBarStyle">
           <div class="box">
@@ -20,7 +20,7 @@
         </div>
       </div>
   
-      <div class="contents">
+      <div class="contents" :style="fill_the_remaining_height">
         <div class="content">
           <router-view></router-view>
         </div>
@@ -37,6 +37,13 @@
       };
     },
     computed: {
+      fill_the_remaining_height()
+      {
+        return {
+        height: `calc(100vh - ${this.height}px)`
+        };
+      },
+
       navBarStyle() {
         return {
           height: `${this.height}px`
@@ -47,6 +54,9 @@
   </script>
   
   <style scoped>
+  .all-space{
+    height: 100vh;
+  }
   .sticky-container {
     position: sticky;
     top: 0;
@@ -131,12 +141,13 @@
   .contents {
     display: flex;
     justify-content: center;
+    flex: 1;
   }
   
   .content {
     display: flex;
-    width: 1400px;
-    height: 1400px;
+    width:100%;
+    flex: 1;
     background-color: #f0f2f3;
   }
   </style>

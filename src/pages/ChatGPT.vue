@@ -2,16 +2,16 @@
     <div class="main">
         <sidebar/>
         <div class="content">
-            <li>测试1</li>
-            <li>测试2</li>
+            <Main/>
         </div>
     </div>
 </template>
 
 <script>
     import sidebar from '../components/sidebar.vue'
+    import Main from '../components/main.vue';
     export default {
-        components: { sidebar },
+        components: { sidebar, Main },
         name: "ChatGPT"
     }
 </script>
@@ -22,6 +22,6 @@
     width:100%;
 }
 .content {
-  flex: 1; /* 设置内容区域占据剩余空间 */
+  flex: 1;
 }
 </style>

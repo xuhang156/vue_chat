@@ -1,34 +1,33 @@
 <template>
-  <div class="sidebar" :style="sidebarStyle">
-    <a @click="addChat" class="addChatButton">+ New Chat</a>
-    <div class="chatList">
-      <ul>
-        <li v-for="chat in chatList" :key="chat.key" @click="printChat(chat)">
-          <div class="chatItem">
-            <div class="avatar">
-              <img src="../assets/globe-solid.svg" alt="">
-            </div>
-            <div class="chatInfo">
-              <input  class="listInput" v-if="chat.editable" v-model="chat.name">
-              <div class="listInput" v-else>{{ chat.name }}</div>
-            </div>
-            <div class="flushright chatItem">
-              <button @click="modifyChat(chat)" v-if="!chat.editable">
-                <span class="iconfont icon-chuangzuo" ></span>
-              </button>
-              <button @click="deleteChat(chat)" v-if="!chat.editable">
-                <span class="iconfont icon-delete" ></span>
-              </button>
-              <button @click="modifyOk(chat)" v-if="chat.editable">
-                <span class="iconfont icon-down" ></span>
-              </button>
-              <button @click="revocation(chat)" v-if="chat.editable">
-                <span class="iconfont icon-close" ></span>
-              </button>
-            </div>
+  <div class="sidebar" >
+    <div class="addChatContainer">
+      <a @click="addChat" class="addChatButton">+ 新建聊天</a>
+    </div>
+    <div class="chatList"  @mouseover="showScrollBar" @mouseleave="hideScrollBar" :style="sidebarStyle">
+      <li v-for="chat in chatList" :key="chat.key" @click="printChat(chat)" :class="{active:chat.selected}">
+        <div class="chatItem">
+          <div class="avatar iconfont icon-message-comments">
           </div>
-        </li>
-      </ul>
+          <div class="chatInfo">
+            <input  class="listInput" v-if="chat.editable" v-model="chat.name">
+            <div class="listInput" v-else>{{ chat.name }}</div>
+          </div>
+          <div class="flushright chatItem">
+            <button @click="modifyChat(chat)" v-if="chat.selected && !chat.editable">
+              <span class="iconfont icon-chuangzuo" ></span>
+            </button>
+            <button @click="deleteChat(chat)" v-if="chat.selected && !chat.editable">
+              <span class="iconfont icon-delete" ></span>
+            </button>
+            <button @click="modifyOk(chat)" v-if="chat.selected && chat.editable">
+              <span class="iconfont icon-down" ></span>
+            </button>
+            <button @click="revocation(chat)" v-if="chat.selected && chat.editable">
+              <span class="iconfont icon-close" ></span>
+            </button>
+          </div>
+        </div>
+      </li>
     </div>
   </div>
 </template>
@@ -38,13 +37,24 @@ export default {
   name: "sidebar",
   data() {
     return {
+      scrollBar:"auto",
       chatList: [
-        {key:1, name: "Test1", editable: false, backup: "" },
-        {key:2, name: "Test2", editable: false, backup: "" }
+        {key:1, name: "Test1", editable: false, backup: "",selected:false},
+        {key:2, name: "Test2", editable: false, backup: "",selected:false}
       ]
     };
   },
   methods: {
+    showScrollBar()
+    {
+      this.scrollBar = "scroll";
+      console.log(this.scrollBar);
+    },
+    hideScrollBar()
+    {
+      this.scrollBar = "auto";
+      console.log(this.scrollBar);
+    },
     modifyOk(chat) {
       chat.editable = false;
       chat.backup = "";
@@ -69,6 +79,12 @@ export default {
       this.chatList.unshift({ name: "新建聊天" });
     },
     printChat(chat) {
+      this.chatList.forEach(item => {
+        if (item !== chat) {
+          item.selected = false;
+        }
+      });
+      chat.selected = true;
       console.log(chat);
     }
   },
@@ -76,18 +92,27 @@ export default {
     sidebarStyle() {
       return {
         margin: "0px",
-        width: "250px"
+        width: "250px",
+        overflowY:this.scrollBar
       };
     }
   }
 };
 </script>
 <style scoped>
-  ul{
-    margin: 0px;
-  }
+.chatList::-webkit-scrollbar {
+  width: 8px; /* scrollbar width */
+}
+
+.chatList::-webkit-scrollbar-track {
+  background-color: #eee; /* track background color */
+}
+
+.chatList::-webkit-scrollbar-thumb {
+  background-color: #888; /* thumb color */
+}
   a {
-    margin-top:10px ;
+    margin:10px ;
     width: 80%;
     height: 40px;
     display: flex;
@@ -97,15 +122,25 @@ export default {
     border-radius: 7px;
     user-select: none;
   }
+  li :hover{
+    border-radius: 10px;
+    background-color: lightblue;
+  }
   li{
     list-style:none;
-    margin: 0px;
+    margin: 10px;
+    border-radius: 10px;
   }
 
   img {
-    width: 25px; /* 设置宽度为200像素 */
-    height: 25px; /* 设置高度为150像素 */
+    width: 25px;
+    height: 25px;
   }
+.addChatContainer {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
   .addChatButton:hover {
     background-color: aliceblue;
     cursor: pointer;
@@ -113,6 +148,7 @@ export default {
   
   .flushright
   {
+    height: 30px;
     margin-left: auto;
   }
   .listInput{
@@ -135,12 +171,15 @@ export default {
     align-items: center;
   }
   .avatar {
+    width:20px;
+    height: 20px;
     margin-right: 10px;
     align-items: center;
   }
   .chatList {
     margin-top: 20px;
     width: 100%;
+    overflow-y: auto;
   }
   .chatList p {
     margin: 0;
@@ -150,5 +189,8 @@ export default {
     margin: 2px;
     background-color: transparent;
   }
+  .active {
+    background-color: lightblue;
+}
   </style>
   
