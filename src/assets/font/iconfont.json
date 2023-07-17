@@ -1,0 +1,58 @@
+{
+  "id": "4169037",
+  "name": "chatgpt",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "11372647",
+      "name": "创作",
+      "font_class": "chuangzuo",
+      "unicode": "e8ad",
+      "unicode_decimal": 59565
+    },
+    {
+      "icon_id": "34453195",
+      "name": "customization",
+      "font_class": "customization",
+      "unicode": "e852",
+      "unicode_decimal": 59474
+    },
+    {
+      "icon_id": "34452956",
+      "name": "add",
+      "font_class": "add",
+      "unicode": "e835",
+      "unicode_decimal": 59445
+    },
+    {
+      "icon_id": "34452987",
+      "name": "down",
+      "font_class": "down",
+      "unicode": "e839",
+      "unicode_decimal": 59449
+    },
+    {
+      "icon_id": "34452988",
+      "name": "close",
+      "font_class": "close",
+      "unicode": "e83a",
+      "unicode_decimal": 59450
+    },
+    {
+      "icon_id": "34452990",
+      "name": "delete",
+      "font_class": "delete",
+      "unicode": "e83b",
+      "unicode_decimal": 59451
+    },
+    {
+      "icon_id": "34453017",
+      "name": "loading",
+      "font_class": "loading",
+      "unicode": "e83d",
+      "unicode_decimal": 59453
+    }
+  ]
+}

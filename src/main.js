@@ -5,6 +5,7 @@ import VueRouter from 'vue-router';
 import router from "@/router";
 //按需引入element-ui
 import {Row,Button} from 'element-ui';
+import './assets/font/iconfont.css'
 
 //关闭生产提示
 Vue.config.productionTip = false
