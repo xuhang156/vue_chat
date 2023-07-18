@@ -1,21 +1,27 @@
 <template>
-    <div class="mainChat center-item flex-column" style="overflow-y: auto;overflow-x: hidden;">
-        <div v-for="chat in testDatas" :key="chat.key" :class="['center-item','full-filling-width',(chat.user == 1)?'is-user':'']">
-            <div class="filing-80">
-                <li>
-                    <div class="flex-row">
-                        <div class="iconfont icon-message-comments fix-square-40"></div>
-                        <div style="flex-grow: 1;display: flex;align-items: center;">{{ chat.text }}</div>
-                    </div>
-                </li>
+    <div class="mainChat center-item flex-column">
+        <div class="mainChat center-item flex-column" style="overflow-y: auto;overflow-x: hidden;">
+            <div v-for="chat in testDatas" :key="chat.key" :class="['center-item','full-filling-width',(chat.user == 1)?'is-user':'']">
+                <div class="filing-80">
+                    <li>
+                        <div class="flex-row">
+                            <div class="iconfont icon-message-comments fix-square-40"></div>
+                            <div style="flex-grow: 1;display: flex;align-items: center;">{{ chat.text }}</div>
+                        </div>
+                    </li>
+                </div>
             </div>
         </div>
-
+        <sendmessage/>
     </div>
+
 </template>
 <script>
+import sendmessage from './sendmessage.vue'
+   
    export default
    {
+  components: { sendmessage },
         data() {
             return {
                 testDatas:
