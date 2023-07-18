@@ -1,6 +1,6 @@
 <template>
     <div class="mainChat center-item flex-column">
-        <div class="mainChat center-item flex-column" style="overflow-y: auto;overflow-x: hidden;">
+        <div class="mainChat center-item flex-column" ref="scrollContainer" style="overflow-y: auto;overflow-x: hidden;">
             <div v-for="chat in testDatas" :key="chat.key" :class="['center-item','full-filling-width',(chat.user == 1)?'is-user':'']">
                 <div class="filing-80">
                     <li>
@@ -25,6 +25,13 @@ import sendmessage from './sendmessage.vue'
             handle_question(question){
                 console.log("Father get:",question);
                 this.testDatas.push(question);
+                this.$nextTick(() =>{
+                    this.scrollToBottom();
+                });
+            },
+            scrollToBottom(){
+                const scroll = this.$refs.scrollContainer;
+                scroll.scrollTop = scroll.scrollHeight;
             }
         },
         data() {
