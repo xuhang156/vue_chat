@@ -30,13 +30,14 @@
         },
         sendData(event){
             if (event.keyCode === 13) {
-              const textarea = this.$refs.textarea;
-              const data = textarea.value.trim();
-              if (data !== "") {
-                textarea.value = "";
-                this.$refs.textarea.rows = 1;
-                console.log("发送数据:", data);
-              }
+                const textarea = this.$refs.textarea;
+                const data = textarea.value.trim();
+                if (data !== "") {
+                  textarea.value = "";
+                  this.$refs.textarea.rows = 1;
+                  console.log("发送数据:", data);
+                  this.$emit("question", {user:1,text:data}); 
+                }
             }
         }
     },

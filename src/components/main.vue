@@ -12,16 +12,21 @@
                 </div>
             </div>
         </div>
-        <sendmessage/>
+        <sendmessage @question="handle_question"/>
     </div>
 
 </template>
 <script>
 import sendmessage from './sendmessage.vue'
-   
    export default
    {
-  components: { sendmessage },
+        components: { sendmessage },
+        methods:{
+            handle_question(question){
+                console.log("Father get:",question);
+                this.testDatas.push(question);
+            }
+        },
         data() {
             return {
                 testDatas:
